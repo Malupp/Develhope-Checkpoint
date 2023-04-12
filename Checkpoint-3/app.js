@@ -17,7 +17,9 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
     try {
-        const user = await prisma.user.create(req.body)
+        const datas = req.body
+        const user = await prisma.user.create({data: {...datas}
+        })
         res.status(200).json(user)
     } catch (error) {
         res.status(500).json({message: error.message})
